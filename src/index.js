@@ -10,7 +10,8 @@ const height = 508
 
 const canvas = createCanvas(width, height)
 const context = canvas.getContext('2d')
-
+context.fillStyle = '#fff'
+context.fillRect(0, 0, width, height)
 
 function createFile () {
   LAYERS?.forEach(layer => {
@@ -18,8 +19,10 @@ function createFile () {
     let assetsIndex = randomInteger(numberOfFiles)
     let path = normalizePath(assetsIndex, layer.name)
     let image = loadImageFromFile(path)
-
     image.then(img => {
+      if (layer.r != 0) {
+        context.rotate(layer.r * Math.PI / 180)
+      }
       context.drawImage(img, layer.x, layer.y, layer.w, layer.h)
       fs.writeFileSync(`./images_output/new_image_test.png`, canvas.toBuffer("image/png"));
     })

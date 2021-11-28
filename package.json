@@ -5,6 +5,7 @@
   },
   "dependencies": {
     "canvas": "^2.8.0",
+    "crypto": "^1.0.1",
     "ffmetadata": "^1.7.0"
   }
 }
